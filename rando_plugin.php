@@ -44,13 +44,13 @@ function rando_writer_content(string $content)
             {		
 				$result = "";
 				$result .=  '<div align="center">';                
-				$result .=  '<div class="top-bar" style="display: inline-block; padding: 5px; border-radius: 5px;">';
-                
+				$result .=  '<div class="top-bar" style="display: inline-block; padding: 5px; border-radius: 5px;">';               				
+
 				//$result .=  '<div style="display: inline-block; padding: 1px; border-radius: 5px; background-color: #ffffff; border: 2px solid #64a7d1;"><a style="border-bottom: medium none;" title="Dénivelé" href="https://blog.elkami.fr/a-propos/" rel="nofollow" target="_blank"><div style="width: 120px; height: 50px; text-align: center; vertical-align: middle; line-height: 50px;">Montée: '.$monte_rando_writer.'</div></a></div>&nbsp;';                
 				//$result .=  '<div style="display: inline-block; padding: 1px; border-radius: 5px; background-color: #ffffff; border: 2px solid #64a7d1;"><a style="border-bottom: medium none;" title="Horaire" href="https://blog.elkami.fr/a-propos/" rel="nofollow" target="_blank"><div style="width: 120px; height: 50px; text-align: center; vertical-align: middle; line-height: 50px;">Durée: '.$horaire_rando_writer.'</div></a></div>&nbsp;';                
 				//$result .=  '<div style="display: inline-block; padding: 1px; border-radius: 5px; background-color: #ffffff; border: 2px solid #64a7d1;"><a style="border-bottom: medium none;" title="Cotation" href="https://blog.elkami.fr/cotations/" rel="nofollow" target="_blank"><div style="width: 120px; height: 50px; text-align: center; vertical-align: middle; line-height: 50px;">Cotation: '.$niveau_rando_writer.'</div></a></div>&nbsp;';                
-				$result .=  '<div style="display: inline-block; padding: 1px; border-radius: 5px; background-color: #ffffff; border: 2px solid #64a7d1;"><a style="border-bottom: medium none;" title="Carte" href="'.$parcours_rando_writer.'" rel="nofollow" target="_blank"><div style="width: 120px; height: 50px; text-align: center; vertical-align: middle; line-height: 50px;">La carte</div></a></div>&nbsp;';                
-				$result .=  '<div style="display: inline-block; padding: 1px; border-radius: 5px; background-color: #ffffff; border: 2px solid #64a7d1;"><a style="border-bottom: medium none;" title="Trace GPS" href="'.$gpx_file.'" rel="nofollow" download><div style="width: 120px; height: 50px; text-align: center; vertical-align: middle; line-height: 50px;">La trace GPS</div></a></div>&nbsp;';
+				$result .=  '<div style="display: inline-block; padding: 1px; border-radius: 5px; background-color: #ffffff; border: 2px solid #000000;"><a style="border-bottom: medium none;" title="Carte" href="'.$parcours_rando_writer.'" rel="nofollow" target="_blank"><img src="/wp-content/plugins/rando_wp/assets/img/ico-carte.webp" alt="La carte"/></a></div>&nbsp;';
+				$result .=  '<div style="display: inline-block; padding: 1px; border-radius: 5px; background-color: #ffffff; border: 2px solid #000000;"><a style="border-bottom: medium none;" title="Trace GPS" href="'.$gpx_file.'" rel="nofollow" download><img src="/wp-content/plugins/rando_wp/assets/img/ico-gpx.webp" alt="Le parcours gpx"/></a></div>&nbsp;';
 
 				$result .=  '</div>';
 				$result .=  '</div>';
@@ -93,10 +93,10 @@ else
 	add_filter('the_content', 'rando_writer_content');
 
 	// Insert some meta after the date / time field (not working in some theme)
-	add_filter('get_the_date', 'rando_writer_date', 10, 3);
-	add_filter('get_the_modified_date', 'rando_writer_date', 10, 3);
-	add_filter('get_the_time', 'rando_writer_date', 10, 3);
-	add_filter('get_the_modified_time', 'rando_writer_date', 10, 3);
+	// add_filter('get_the_date', 'rando_writer_date', 10, 3);
+	// add_filter('get_the_modified_date', 'rando_writer_date', 10, 3);
+	// add_filter('get_the_time', 'rando_writer_date', 10, 3);
+	// add_filter('get_the_modified_time', 'rando_writer_date', 10, 3);
 
 	// Pour le thème neve, il faut modifier post_meta.php (inc/views/partials/post_meta.php - function render_meta_list)
 	// car les créateurs force le formatage de la date empêchant ainsi toutes insertions d'info à la suite
