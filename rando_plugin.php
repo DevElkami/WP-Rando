@@ -3,7 +3,7 @@
 	Plugin Name: Rando writer
 	Plugin URI: https://blog.elkami.fr/
 	Description: Un plugin me permettant de générer mes articles de randonnée plus rapidement.
-	Version: 2.0
+	Version: 2.1
 	Requires at least: 5.2
 	Requires PHP: 7.2
 	License: LGPL
@@ -93,17 +93,24 @@ else
 	add_filter('the_content', 'rando_writer_content');
 
 	// Insert some meta after the date / time field (not working in some theme)
-	// add_filter('get_the_date', 'rando_writer_date', 10, 3);
-	// add_filter('get_the_modified_date', 'rando_writer_date', 10, 3);
-	// add_filter('get_the_time', 'rando_writer_date', 10, 3);
-	// add_filter('get_the_modified_time', 'rando_writer_date', 10, 3);
-
-	// Pour le thème neve, il faut modifier post_meta.php (inc/views/partials/post_meta.php - function render_meta_list)
-	// car les créateurs force le formatage de la date empêchant ainsi toutes insertions d'info à la suite
-	// Peut être faudrait-il voir les custom metadata: méthode plus générique évitant de modifier le thème
+	$my_theme = wp_get_theme( 'neve' );
+	if ( $my_theme->exists() )
+	{
+		// Pour le thème neve, il faut modifier post_meta.php (inc/views/partials/post_meta.php - function render_meta_list)
+		// car les créateurs force le formatage de la date empêchant ainsi toutes insertions d'info à la suite
+		// Peut être faudrait-il voir les custom metadata: méthode plus générique évitant de modifier le thème
+		// ...
+	}
+	else
+	{
+		add_filter('get_the_date', 'rando_writer_date', 10, 3);
+		// add_filter('get_the_modified_date', 'rando_writer_date', 10, 3);
+		// add_filter('get_the_time', 'rando_writer_date', 10, 3);
+		// add_filter('get_the_modified_time', 'rando_writer_date', 10, 3);
+	}	
 }
 
-/* Set up the rating entry for the admin area */
+// Set up the admin area
 function rando_writer_input() 
 {
 	global $post;	
