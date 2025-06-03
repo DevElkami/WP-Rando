@@ -99,7 +99,29 @@ else
 		// Pour le thème neve, il faut modifier post_meta.php (inc/views/partials/post_meta.php - function render_meta_list)
 		// car les créateurs force le formatage de la date empêchant ainsi toutes insertions d'info à la suite
 		// Peut être faudrait-il voir les custom metadata: méthode plus générique évitant de modifier le thème
-		// ...
+		
+		/* 
+  			Code à insérer:
+     			$result = "";
+					
+			$monte_rando_writer = get_post_meta(get_the_ID(),'_rando_writer_monte',true);
+			$horaire_rando_writer = get_post_meta(get_the_ID(),'_rando_writer_horaire',true);	
+			$niveau_rando_writer = get_post_meta(get_the_ID(),'_rando_writer_niveau',true);	
+			$parcours_rando_writer = get_post_meta(get_the_ID(),'_rando_writer_parcours',true);
+			$hyper_rando_writer = get_post_meta(get_the_ID(),'_rando_writer_hyper',true);
+
+			if(empty($hyper_rando_writer) && !empty($parcours_rando_writer))
+			{
+				$result = " - ";
+				$result .=  ''.$monte_rando_writer.'';
+				$result .=  ' - ';
+				$result .=  ''.$horaire_rando_writer.'';
+				$result .=  ' - ';
+				$result .=  ''.$niveau_rando_writer.'';
+			}
+			
+			$meta_content = str_replace( '{meta}', self::get_time_tags( $pid ), $format ) . $result;
+		*/
 	}
 	else
 	{
