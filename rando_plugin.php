@@ -27,6 +27,8 @@ function rando_writer_box()
 
 function rando_writer_content(string $content)
 {
+    $result = '';
+
     if (is_single()) 
 	{        
 		$monte_rando_writer = get_post_meta(get_the_ID(),'_rando_writer_monte',true);
@@ -42,16 +44,10 @@ function rando_writer_content(string $content)
 
             if (@file_exists(getcwd() . $parcours_relative_path))
             {		
-				$result = "";
 				$result .=  '<div align="center">';                
 				$result .=  '<div class="top-bar" style="display: inline-block; padding: 5px; border-radius: 5px;">';               				
-
-				//$result .=  '<div style="display: inline-block; padding: 1px; border-radius: 5px; background-color: #ffffff; border: 2px solid #64a7d1;"><a style="border-bottom: medium none;" title="Dénivelé" href="https://blog.elkami.fr/a-propos/" rel="nofollow" target="_blank"><div style="width: 120px; height: 50px; text-align: center; vertical-align: middle; line-height: 50px;">Montée: '.$monte_rando_writer.'</div></a></div>&nbsp;';                
-				//$result .=  '<div style="display: inline-block; padding: 1px; border-radius: 5px; background-color: #ffffff; border: 2px solid #64a7d1;"><a style="border-bottom: medium none;" title="Horaire" href="https://blog.elkami.fr/a-propos/" rel="nofollow" target="_blank"><div style="width: 120px; height: 50px; text-align: center; vertical-align: middle; line-height: 50px;">Durée: '.$horaire_rando_writer.'</div></a></div>&nbsp;';                
-				//$result .=  '<div style="display: inline-block; padding: 1px; border-radius: 5px; background-color: #ffffff; border: 2px solid #64a7d1;"><a style="border-bottom: medium none;" title="Cotation" href="https://blog.elkami.fr/cotations/" rel="nofollow" target="_blank"><div style="width: 120px; height: 50px; text-align: center; vertical-align: middle; line-height: 50px;">Cotation: '.$niveau_rando_writer.'</div></a></div>&nbsp;';                
 				$result .=  '<div style="display: inline-block; padding: 1px; border-radius: 5px; background-color: #ffffff; border: 2px solid #000000;"><a style="border-bottom: medium none;" title="Carte" href="'.$parcours_rando_writer.'" rel="nofollow" target="_blank"><img src="/wp-content/plugins/rando_wp/assets/img/ico-carte.webp" alt="La carte"/></a></div>&nbsp;';
 				$result .=  '<div style="display: inline-block; padding: 1px; border-radius: 5px; background-color: #ffffff; border: 2px solid #000000;"><a style="border-bottom: medium none;" title="Trace GPS" href="'.$gpx_file.'" rel="nofollow" download><img src="/wp-content/plugins/rando_wp/assets/img/ico-gpx.webp" alt="Le parcours gpx"/></a></div>&nbsp;';
-
 				$result .=  '</div>';
 				$result .=  '</div>';
 				$result .=  '</br>';
@@ -99,29 +95,7 @@ else
 		// Pour le thème neve, il faut modifier post_meta.php (inc/views/partials/post_meta.php - function render_meta_list)
 		// car les créateurs force le formatage de la date empêchant ainsi toutes insertions d'info à la suite
 		// Peut être faudrait-il voir les custom metadata: méthode plus générique évitant de modifier le thème
-		
-		/* 
-  			Code à insérer:
-     			$result = "";
-					
-			$monte_rando_writer = get_post_meta(get_the_ID(),'_rando_writer_monte',true);
-			$horaire_rando_writer = get_post_meta(get_the_ID(),'_rando_writer_horaire',true);	
-			$niveau_rando_writer = get_post_meta(get_the_ID(),'_rando_writer_niveau',true);	
-			$parcours_rando_writer = get_post_meta(get_the_ID(),'_rando_writer_parcours',true);
-			$hyper_rando_writer = get_post_meta(get_the_ID(),'_rando_writer_hyper',true);
-
-			if(empty($hyper_rando_writer) && !empty($parcours_rando_writer))
-			{
-				$result = " - ";
-				$result .=  ''.$monte_rando_writer.'';
-				$result .=  ' - ';
-				$result .=  ''.$horaire_rando_writer.'';
-				$result .=  ' - ';
-				$result .=  ''.$niveau_rando_writer.'';
-			}
-			
-			$meta_content = str_replace( '{meta}', self::get_time_tags( $pid ), $format ) . $result;
-		*/
+		// ...
 	}
 	else
 	{
