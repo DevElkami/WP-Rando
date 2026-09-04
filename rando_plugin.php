@@ -3,7 +3,7 @@
 	Plugin Name: Rando writer
 	Plugin URI: https://blog.elkami.fr/
 	Description: Un plugin me permettant de générer mes articles de randonnée plus rapidement.
-	Version: 2.1
+	Version: 2.2
 	Requires at least: 7.1
 	Requires PHP: 8.0
 	License: LGPL
@@ -39,10 +39,10 @@ function rando_writer_content(string $content)
       
       	if(!empty($parcours_rando_writer) && is_single() && empty($hyper_rando_writer) )
         {
-            $parcours_relative_path = substr($parcours_rando_writer, strlen("https://blog.elkami.fr"));
+            $parcours_relative_path = parse_url($parcours_rando_writer, PHP_URL_PATH);
             $gpx_file = dirname($parcours_relative_path) . "/parcours.gpx";
 
-            if (@file_exists(ABSPATH . $parcours_relative_path))
+            if (!empty($parcours_relative_path) && @file_exists(ABSPATH . $parcours_relative_path))
             {		
 				$result .=  '<div align="center">';                
 				$result .=  '<div class="top-bar" style="display: inline-block; padding: 5px; border-radius: 5px;">';               				
