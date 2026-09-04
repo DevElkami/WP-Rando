@@ -4,8 +4,8 @@
 	Plugin URI: https://blog.elkami.fr/
 	Description: Un plugin me permettant de générer mes articles de randonnée plus rapidement.
 	Version: 2.1
-	Requires at least: 5.2
-	Requires PHP: 7.2
+	Requires at least: 7.1
+	Requires PHP: 8.0
 	License: LGPL
 	Author: Elkami
 	Author URI: https://blog.elkami.fr/
@@ -42,7 +42,7 @@ function rando_writer_content(string $content)
             $parcours_relative_path = substr($parcours_rando_writer, strlen("https://blog.elkami.fr"));
             $gpx_file = dirname($parcours_relative_path) . "/parcours.gpx";
 
-            if (@file_exists(getcwd() . $parcours_relative_path))
+            if (@file_exists(ABSPATH . $parcours_relative_path))
             {		
 				$result .=  '<div align="center">';                
 				$result .=  '<div class="top-bar" style="display: inline-block; padding: 5px; border-radius: 5px;">';               				
@@ -60,11 +60,11 @@ function rando_writer_content(string $content)
 
 function rando_writer_date(string|int $the_date, string $format, WP_Post $post)
 {    
-	$monte_rando_writer = get_post_meta(get_the_ID(),'_rando_writer_monte',true);
-	$horaire_rando_writer = get_post_meta(get_the_ID(),'_rando_writer_horaire',true);	
-	$niveau_rando_writer = get_post_meta(get_the_ID(),'_rando_writer_niveau',true);	
-    $parcours_rando_writer = get_post_meta(get_the_ID(),'_rando_writer_parcours',true);
-    $hyper_rando_writer = get_post_meta(get_the_ID(),'_rando_writer_hyper',true);
+	$monte_rando_writer = get_post_meta($post->ID,'_rando_writer_monte',true);
+	$horaire_rando_writer = get_post_meta($post->ID,'_rando_writer_horaire',true);	
+	$niveau_rando_writer = get_post_meta($post->ID,'_rando_writer_niveau',true);	
+    $parcours_rando_writer = get_post_meta($post->ID,'_rando_writer_parcours',true);
+    $hyper_rando_writer = get_post_meta($post->ID,'_rando_writer_hyper',true);
       
     if(empty($hyper_rando_writer) && !empty($parcours_rando_writer))
     {
